@@ -1,1 +1,3 @@
-export { default, chooseLogger, getLoggerOfType, Logger } from './src';
+export {
+  default, chooseLogger, getLoggerOfType, Logger, websocketLogger, LogMessage, Severity, validateLogMessage
+} from './src';

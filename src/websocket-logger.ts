@@ -4,14 +4,15 @@ import { Logger } from '.';
 const SeverityValidation = Union(
   Literal('debug'), Literal('info'), Literal('trace'), Literal('warn'), Literal('error'), Literal('fatal'),
 );
-type Severity = Static<typeof SeverityValidation>;
+export type Severity = Static<typeof SeverityValidation>;
 
 const LogMessageValidation = Record({
   application: String,
   message: String,
   severity: SeverityValidation,
 });
-type LogMessage = Static<typeof LogMessageValidation>;
+export type LogMessage = Static<typeof LogMessageValidation>;
+export const validateLogMessage = (m: any) => LogMessageValidation.check(m);
 
 export const websocketLogger: (endpoint: string) => Logger = (endpoint) => {
   const ws = new WebSocket(endpoint);
