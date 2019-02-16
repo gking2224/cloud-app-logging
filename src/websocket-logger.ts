@@ -1,4 +1,17 @@
+import { Literal, Record, Static, String, Union } from 'runtypes';
 import { Logger } from '.';
+
+const SeverityValidation = Union(
+  Literal('debug'), Literal('info'), Literal('trace'), Literal('warn'), Literal('error'), Literal('fatal'),
+);
+type Severity = Static<typeof SeverityValidation>;
+
+const LogMessageValidation = Record({
+  application: String,
+  message: String,
+  severity: SeverityValidation,
+});
+type LogMessage = Static<typeof LogMessageValidation>;
 
 export const websocketLogger: (endpoint: string) => Logger = (endpoint) => {
   const ws = new WebSocket(endpoint);
@@ -14,8 +27,8 @@ export const websocketLogger: (endpoint: string) => Logger = (endpoint) => {
   ws.onmessage = onMessage; // tslint:disable-line:no-object-mutation
   ws.onclose = onClose; // tslint:disable-line:no-object-mutation
 
-  const createSeverityLogger = (severity: string) => async (message: string) => {
-    const msg = { severity, message, logStream: 'chat-app-ui' };
+  const createSeverityLogger = (severity: Severity) => async (message: string) => {
+    const msg: LogMessage = { severity, message, application: 'chat-app-ui' };
     ws.send(JSON.stringify(msg));
   };
   const debug = createSeverityLogger('debug');
