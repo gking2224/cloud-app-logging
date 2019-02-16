@@ -1,0 +1,19 @@
+{
+  "name": "@animando/cloud-app-logging",
+  "version": "1.0.2",
+  "main": "./lib/index.js",
+  "license": "MIT",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "dependencies": {
+    "@types/node": "^11.9.4",
+    "runtypes": "^3.1.2"
+  },
+  "devDependencies": {
+    "tslint": "^5.12.1",
+    "tslint-immutable": "^5.2.0",
+    "typescript": "^3.3.3"
+  }
+}

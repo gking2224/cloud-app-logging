@@ -1,0 +1,32 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:latest",
+    "tslint-immutable"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "**/_assets/*.json"
+    ]
+  },
+  "rules": {
+    "interface-name": false,
+    "quotemark": [true, "single"],
+    "curly": false,
+    "no-console": false,
+    "no-submodule-imports": false,
+    "trailing-comma": [
+      true,
+      {
+        "singleline": "never",
+        "multiline": {
+          "objects": "always",
+          "arrays": "always",
+          "functions": "always",
+          "typeLiterals": "ignore"
+        },
+        "esSpecCompliant": true
+      }
+    ]
+  }
+}
