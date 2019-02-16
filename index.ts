@@ -1,1 +1,1 @@
-export { default, chooseLogger, getLoggerOfType } from './src';
+export { default, chooseLogger, getLoggerOfType, Logger } from './src';
