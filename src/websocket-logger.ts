@@ -6,7 +6,7 @@ const SeverityValidation = Union(
 );
 export type Severity = Static<typeof SeverityValidation>;
 
-const LogMessageValidation = Record({
+export const LogMessageValidation = Record({
   application: String,
   message: String,
   severity: SeverityValidation,

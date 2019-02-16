@@ -1,7 +1,7 @@
 import { Literal, Static, Union } from 'runtypes';
 import { consoleLogger } from './console-logger';
 import { websocketLogger } from './websocket-logger';
-export { LogMessage, Severity, validateLogMessage, websocketLogger } from './websocket-logger';
+export { LogMessage, Severity, validateLogMessage, websocketLogger, LogMessageValidation } from './websocket-logger';
 
 export type Logger = ({ debug: ((s: string) => Promise<void>) });
 
