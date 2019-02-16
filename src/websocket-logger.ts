@@ -14,7 +14,7 @@ export const LogMessageValidation = Record({
 export type LogMessage = Static<typeof LogMessageValidation>;
 export const validateLogMessage = (m: any) => LogMessageValidation.check(m);
 
-export const websocketLogger: (endpoint: string) => Logger = (endpoint) => {
+export const websocketLogger: (endpoint: string, application: string) => Logger = (endpoint, application) => {
   const ws = new WebSocket(endpoint);
   const onOpen = () => null;
   const onError = console.error;
@@ -29,7 +29,7 @@ export const websocketLogger: (endpoint: string) => Logger = (endpoint) => {
   ws.onclose = onClose; // tslint:disable-line:no-object-mutation
 
   const createSeverityLogger = (severity: Severity) => async (message: string) => {
-    const msg: LogMessage = { severity, message, application: 'chat-app-ui' };
+    const msg: LogMessage = { severity, message, application };
     ws.send(JSON.stringify(msg));
   };
   const debug = createSeverityLogger('debug');

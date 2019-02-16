@@ -20,7 +20,8 @@ export const chooseLogger = (): Logger => {
 export const getLoggerOfType = (loggerType: LoggerType): Logger => {
   switch (loggerType) {
     case 'cloudwatch':
-      return websocketLogger(process.env.WEBSOCKET_LOGGER_ENDPOINT || '');
+      return websocketLogger(
+        process.env.WEBSOCKET_LOGGER_ENDPOINT || '', process.env.WEBSOCKET_LOGGER_APPLICATION || '<Unknown>');
     case 'console':
       return consoleLogger;
   }
